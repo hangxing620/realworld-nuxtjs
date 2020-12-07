@@ -12,14 +12,10 @@
 					</p>
 
 					<ul class="error-messages">
-						<template
-              v-for="(messages, field) in errors"
-            >
-              <li
-                v-for="(message, index) in messages"
-                :key="index"
-              >{{ field }} {{ messages }}</li>
-            </template>
+            <li
+              v-for="(message, index) in errors"
+              :key="index"
+            >{{ message }} </li>
 					</ul>
 
 					<form  @submit.prevent="handleSubmit">
