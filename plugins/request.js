@@ -1,6 +1,6 @@
 // 基于axios
 import axios from 'axios'
-
+/** @type { import('axios').AxiosInstance } */
 export const request = axios.create({
   baseURL: 'http://realworld.api.fed.lagounews.com'
 })

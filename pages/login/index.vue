@@ -24,6 +24,7 @@
 								class="form-control form-control-lg"
 								type="text"
 								placeholder="Your Name"
+								v-model="user.username"
 							/>
 						</fieldset>
 						<fieldset class="form-group">
@@ -31,6 +32,7 @@
 								class="form-control form-control-lg"
 								type="text"
 								placeholder="Email"
+								v-model="user.email"
 							/>
 						</fieldset>
 						<fieldset class="form-group">
@@ -38,6 +40,7 @@
 								class="form-control form-control-lg"
 								type="password"
 								placeholder="Password"
+								v-model="user.password"
 							/>
 						</fieldset>
 						<button class="btn btn-lg btn-primary pull-xs-right">
@@ -66,12 +69,10 @@ export default {
 		return {
 			user: {
 				username: "",
-				email: "lpzmail@163.com",
+				email: "934752907@qq.com",
 				password: "12345678",
 			},
 			errors: {
-        'email': 'emial is a error',
-        'password': 'password is an error'
       }, // 错误消息
 		};
 	},
@@ -83,7 +84,7 @@ export default {
 							user: this.user,
 					  })
 					: await register({
-							user: thi.user,
+							user: this.user,
             });
         
         this.$store.commit('setUser', data.user)

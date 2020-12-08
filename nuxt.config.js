@@ -3,6 +3,7 @@
  */
 module.exports = {
   router: {
+    linkActiveClass: 'active',
     // 自定义路由表规则
     extendRoutes(routes, resolve) {
       routes.splice(0)
@@ -25,7 +26,27 @@ module.exports = {
               path: '/register',
               name: 'register',
               component: resolve(__dirname, 'pages/login/')
-            }
+            },
+            {
+              path: '/profile',
+              name: 'profile',
+              component: resolve(__dirname, 'pages/profile/')
+            },
+            {
+              path: '/article',
+              name: 'article',
+              component: resolve(__dirname, 'pages/article/')
+            },
+            {
+              path: '/editor',
+              name: 'editor',
+              component: resolve(__dirname, 'pages/editor/')
+            },
+            {
+              path: '/settings',
+              name: 'settings',
+              component: resolve(__dirname, 'pages/settings/')
+            },
           ]
         },
       ])
@@ -38,6 +59,6 @@ module.exports = {
   // 注册插件
   plugins: [
     '~/plugins/request.js',
-    // '~/plugins/dayjs.js'
+    '~/plugins/dayjs.js'
   ]
 }
