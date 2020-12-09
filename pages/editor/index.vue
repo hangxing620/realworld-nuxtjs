@@ -3,7 +3,7 @@
 		<div class="container page">
 			<div class="row">
 				<div class="col-md-10 offset-md-1 col-xs-12">
-					<form>
+					<form @submit.prevent="handleSubmitArticle">
 						<fieldset>
 							<fieldset class="form-group">
 								<input
@@ -34,13 +34,14 @@
 									type="text"
 									class="form-control"
 									placeholder="Enter tags"
-									v-model="article.tagList"
+									v-model="tags"
 								/>
 								<div class="tag-list"></div>
 							</fieldset>
 							<button
 								class="btn btn-lg pull-xs-right btn-primary"
 								type="button"
+								@click.prevent="handleSubmitArticle"
 							>
 								Publish Article
 							</button>
@@ -53,6 +54,8 @@
 </template>
 
 <script>
+import { addArticle } from '@/api/article.js'
+
 export default {
 	data() {
 		return {
@@ -61,7 +64,17 @@ export default {
 				description: '',
 				body: '',
 				tagList: []
-			}
+			},
+			tags: ''
+		}
+	},
+	methods: {
+		async handleSubmitArticle() {
+			this.article.tagList = this.tags.split(' ')
+			const { data } = await addArticle({
+				article: this.article
+			})
+			console.log(data);
 		}
 	}
 };
