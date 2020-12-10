@@ -20,6 +20,15 @@
 								<i class="ion-gear-a"></i>&nbsp;Settings
 							</nuxt-link>
 						</li>
+						<li class="nav-item">
+              <nuxt-link class="nav-link" to="/profile?name=12">
+                <img
+                  class="user-pic"
+                  :src="user.image"
+                >
+                {{ user.username }}
+              </nuxt-link>
+            </li>
 					</template>
 					<template v-else>
 						<li class="nav-item">

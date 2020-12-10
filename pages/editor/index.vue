@@ -54,29 +54,40 @@
 </template>
 
 <script>
-import { addArticle } from '@/api/article.js'
+import { addArticle } from "@/api/article.js";
 
 export default {
+	middleware: 'hasAuth',
+	name: 'EditorIndex',
 	data() {
 		return {
 			article: {
-				title: '',
-				description: '',
-				body: '',
-				tagList: []
+				title: "",
+				description: "",
+				body: "",
+				tagList: [],
 			},
-			tags: ''
-		}
+			tags: "",
+		};
 	},
 	methods: {
 		async handleSubmitArticle() {
-			this.article.tagList = this.tags.split(' ')
-			const { data } = await addArticle({
-				article: this.article
-			})
-			console.log(data);
-		}
-	}
+			try {
+				this.article.tagList = this.tags.split(" ");
+				const { data } = await addArticle({
+					article: this.article,
+				});
+
+				this.$router.push({
+					name: "article",
+					query: {
+						slug: data.article.slug,
+					},
+				});
+			} catch (error) {
+			}
+		},
+	},
 };
 </script>
 

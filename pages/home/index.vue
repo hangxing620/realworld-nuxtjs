@@ -92,7 +92,7 @@
 									active: article.favorited,
 								}"
 								:disabled="article.favoriteDisabled"
-								@click="onFavorite(article)"
+								@click.prevent="onFavorite(article)"
 								class="btn btn-outline-primary btn-sm pull-xs-right"
 							>
 								<i class="ion-heart"></i> {{ article.favoritesCount }}
@@ -220,18 +220,22 @@ export default {
 	},
 	methods: {
 		async onFavorite(article) {
-			article.favoriteDisabled = true;
-			if (article.favorited) {
-				// 取消点赞
-				await deleteFavorite(article.slug);
-				article.favorited = false;
-				article.favoritesCount += -1;
-			} else {
-				await addFavorite(article.slug);
-				article.favorited = true;
-				article.favoritesCount += 1;
+			try {
+				article.favoriteDisabled = true
+				if (article.favorited) {
+					// 取消点赞
+					await deleteFavorite(article.slug)
+					article.favorited = false
+					article.favoritesCount += -1
+				} else {
+					// 添加点赞
+					await addFavorite(article.slug)
+					article.favorited = true
+					article.favoritesCount += 1
+				}
+				article.favoriteDisabled = false
+			} catch (error) {
 			}
-			articlie.favoriteDisabled = false;
 		},
 	},
 };
