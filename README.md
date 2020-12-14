@@ -32,3 +32,5 @@ module.exports = {
 
 需要设置watchQuery，配置对应的监听属性
 
+wat
+
